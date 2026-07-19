@@ -35,12 +35,20 @@ export default async function RootLayout({
       lang={locale}
       dir={locale === 'ar' || locale === 'ary' ? 'rtl' : 'ltr'}
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+            <Toaster />
+          </ThemeProvider>
         </NextIntlClientProvider>
-        <Toaster />
       </body>
     </html>
   );

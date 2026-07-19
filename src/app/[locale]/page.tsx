@@ -1,6 +1,7 @@
 import { GlassNav } from "@/components/ui/glass-nav";
 import { AnimatedWrapper, FadeInStagger, FadeInStaggerItem } from "@/components/ui/animated-wrapper";
 import { BentoGrid, BentoCard } from "@/components/ui/apple-cards";
+import { ParallaxBackground } from "@/components/ui/parallax-bg";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 import { MapPin, FileText, BarChart3, ArrowRight } from "lucide-react";
@@ -10,12 +11,12 @@ export default function Home() {
   const t = useTranslations('HomePage');
 
   return (
-    <div className="min-h-screen bg-[#fafafa] selection:bg-blue-100 font-sans">
+    <div className="min-h-screen bg-[#fafafa] dark:bg-slate-950 selection:bg-blue-100 dark:selection:bg-blue-900 font-sans transition-colors duration-500">
       <GlassNav />
       
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden flex flex-col items-center">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-50/50 via-white to-white pointer-events-none" />
+        <ParallaxBackground />
         
         <div className="max-w-5xl mx-auto px-6 relative z-10 text-center">
           <AnimatedWrapper delay={0.1}>
