@@ -49,3 +49,39 @@ model ServiceRequest {
   device_id         String?
   account_id        String?
 }
+
+model SiteAnalysis {
+  id               String   @id @default(cuid())
+  projectName      String   @default("Nouvelle Analyse de Site")
+  status           String   @default("draft")
+  
+  identification   Json?
+  localisation     Json?
+  accessibilite    Json?
+  environnement    Json?
+  topographie      Json?
+  geologie         Json?
+  climat           Json?
+  orientation      Json?
+  vues             Json?
+  sonore           Json?
+  qualiteAir       Json?
+  vegetation       Json?
+  hydrologie       Json?
+  reseaux          Json?
+  reglementation   Json?
+  morphologie      Json?
+  fonctionnelle    Json?
+  flux             Json?
+  socioEco         Json?
+  identiteArch     Json?
+  paysage          Json?
+  environnementale Json?
+  contraintes      Json?
+  opportunites     Json?
+  swot             Json?
+  synthese         Json?
+
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
