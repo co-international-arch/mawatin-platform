@@ -7,7 +7,7 @@ export default function Home() {
       {/* Hero Section */}
       <div className="w-full max-w-2xl mb-8 text-center space-y-4">
         <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
-          Mawatin <span className="text-blue-700">Services</span>
+          Mowatin
         </h1>
         <p className="text-lg text-slate-600">
           Welcome to the official municipal complaint portal. Report issues in your neighborhood quickly and efficiently.
