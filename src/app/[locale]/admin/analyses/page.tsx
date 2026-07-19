@@ -58,7 +58,7 @@ export default async function AdminAnalysesPage() {
                         {analysis.createdAt.toLocaleDateString("fr-FR", { day: 'numeric', month: 'long', year: 'numeric' })}
                       </td>
                       <td className="px-6 py-4">
-                        <button className="text-blue-600 hover:text-blue-800 font-medium">Voir les détails</button>
+                        <a href={`/admin/analyses/${analysis.id}`} className="text-blue-600 hover:text-blue-800 font-medium transition-colors">Voir les détails →</a>
                       </td>
                     </tr>
                   ))}
