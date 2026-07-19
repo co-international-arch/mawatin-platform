@@ -1,0 +1,51 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  extensions = [postgis]
+}
+
+model Service {
+  id              String   @id @default(cuid())
+  service_code    String   @unique
+  service_name    String
+  description     String?
+  metadata        Boolean  @default(false)
+  type            String   @default("realtime")
+  keywords        String?
+  group           String?
+  requests        ServiceRequest[]
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model ServiceRequest {
+  id                String   @id @default(cuid())
+  service_request_id String  @unique @default(cuid())
+  status            String   @default("open")
+  status_notes      String?
+  service_code      String
+  service           Service  @relation(fields: [service_code], references: [service_code])
+  service_name      String?
+  description       String
+  agency_responsible String?
+  service_notice    String?
+  requested_datetime DateTime @default(now())
+  updated_datetime  DateTime @updatedAt
+  expected_datetime DateTime?
+  address           String?
+  address_id        String?
+  zipcode           String?
+  lat               Float
+  long              Float
+  media_url         String?
+  first_name        String?
+  last_name         String?
+  phone             String?
+  email             String?
+  device_id         String?
+  account_id        String?
+}
