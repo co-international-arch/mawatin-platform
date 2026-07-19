@@ -1,9 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+
+const MapLocationPicker = dynamic(() => import("./MapLocationPicker"), { ssr: false });
 
 const SECTIONS = [
   { id: "identification", title: "1. IDENTIFICATION DU SITE", desc: "Informations administratives et générales." },
@@ -11,9 +14,9 @@ const SECTIONS = [
   { id: "accessibilite", title: "3. ACCESSIBILITÉ ET MOBILITÉ", desc: "Analyse des accès et des modes de transport." },
   { id: "environnement", title: "4. ENVIRONNEMENT IMMÉDIAT", desc: "Analyse du voisinage et des limites du site." },
   { id: "topographie", title: "5. TOPOGRAPHIE ET RELIEF", desc: "Configuration physique du terrain." },
-  // Adding the rest dynamically for the sake of length
   { id: "geologie", title: "6. GÉOLOGIE ET PÉDOLOGIE", desc: "Nature du sol et sous-sol." },
   { id: "climat", title: "7. CLIMATOLOGIE", desc: "Conditions climatiques locales." },
+  { id: "orientation", title: "8. ORIENTATION ET ENSOLEILLEMENT", desc: "Analyse héliothermique." },
   { id: "swot", title: "26. ANALYSE SWOT", desc: "Forces, Faiblesses, Opportunités, Menaces." },
 ];
 
@@ -62,13 +65,27 @@ export function SiteAnalysisForm() {
                 onChange={(e) => setFormData({...formData, projectName: e.target.value})}
               />
             </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">Ville</label>
-              <Input placeholder="Ex: Casablanca" />
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Ville</label>
+                <Input placeholder="Ex: Casablanca" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Quartier</label>
+                <Input placeholder="Ex: Maarif" />
+              </div>
             </div>
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-1">Adresse exacte</label>
               <Textarea placeholder="Adresse permettant de localiser le terrain..." />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-1">Coordonnées GPS</label>
+              <p className="text-xs text-slate-500 mb-2">Cliquez sur la carte pour définir les coordonnées (Latitude: {formData.gps?.lat?.toFixed(5) || "N/A"}, Longitude: {formData.gps?.lng?.toFixed(5) || "N/A"})</p>
+              <MapLocationPicker 
+                value={formData.gps}
+                onChange={(loc: any) => setFormData({...formData, gps: loc})}
+              />
             </div>
           </>
         )}
