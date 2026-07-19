@@ -1,10 +1,11 @@
+import { Suspense } from "react";
 import { GlassNav } from "@/components/ui/glass-nav";
 import { AnimatedWrapper, FadeInStagger, FadeInStaggerItem } from "@/components/ui/animated-wrapper";
 import { BentoGrid, BentoCard } from "@/components/ui/apple-cards";
 import { ParallaxBackground } from "@/components/ui/parallax-bg";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
-import { MapPin, FileText, BarChart3, ArrowRight } from "lucide-react";
+import { MapPin, FileText, BarChart3, ArrowRight, LogIn } from "lucide-react";
 import Link from "next/link";
 
 export default function Home() {
@@ -101,6 +102,42 @@ export default function Home() {
           </FadeInStagger>
         </div>
       </section>
+
+      {/* Client Portal CTA */}
+      <Suspense fallback={null}>
+        <section className="py-20 px-6 bg-gradient-to-b from-white to-slate-50">
+          <div className="max-w-3xl mx-auto text-center">
+            <AnimatedWrapper delay={0.1}>
+              <div className="w-14 h-14 bg-indigo-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <LogIn className="w-7 h-7 text-indigo-600" />
+              </div>
+              <h2 className="text-3xl font-bold tracking-tight text-slate-900 mb-4">
+                Portail Architecte
+              </h2>
+              <p className="text-lg text-slate-500 mb-8 max-w-lg mx-auto">
+                Retrouvez et suivez toutes vos analyses de site soumises en temps réel.
+              </p>
+              <Link href="/portal">
+                <Button className="h-14 px-8 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white text-lg font-medium shadow-xl hover:shadow-2xl transition-all hover:-translate-y-0.5">
+                  Accéder au Portail
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
+              </Link>
+            </AnimatedWrapper>
+          </div>
+        </section>
+      </Suspense>
+
+      {/* Footer */}
+      <footer className="py-12 px-6 border-t border-slate-100 bg-white">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <div className="w-7 h-7 bg-slate-900 rounded-lg flex items-center justify-center text-white font-bold text-xs">M</div>
+            <span className="font-semibold text-slate-900">Mawatin Platform</span>
+          </div>
+          <p className="text-sm text-slate-400">© 2026 CO International Architecture. All rights reserved.</p>
+        </div>
+      </footer>
     </div>
   );
 }
